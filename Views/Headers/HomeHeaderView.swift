@@ -9,7 +9,13 @@ import SwiftUI
 
 struct HomeHeaderView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            Image.search
+            Image.invite
+            Image.calendar
+            Image.notificationBell
+        }
+        
     }
 }
 
