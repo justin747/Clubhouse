@@ -23,7 +23,7 @@ extension UpcomingRoom {
                               date: Date(timeIntervalSince1970: 1614527128)),
             UpcomingRoom(groupName: nil,
                               roomName: "Welcome to Clubhouse (Beginners Guide AMA) 🎉",
-                              date: Date(timeIntervalSince1970: 1614541528)),
+                              date: Date(timeIntervalSince1970: 1614527128)),
             UpcomingRoom(groupName: nil,
                               roomName: "Do you have Hoil? 👀",
                               date: Date(timeIntervalSince1970: 1614548728000))
