@@ -13,7 +13,23 @@ struct OtherPersonView: View {
     
     var body: some View {
         VStack {
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+            
+            Group {
+                
+                PersonImageView(image: person.img)                
+                
+                HStack(spacing: 0) {
+                    
+                    Text(person.firstName)
+                        .foregroundColor(Color.textBlack)
+                        .font(Font.Nunito.extraBold(size: 13))
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.8)
+                    
+                }
+                
+            }
+            
         }
         .overlay(NewView()
                     .offset(x: -20, y: 5)
