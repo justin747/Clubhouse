@@ -14,6 +14,7 @@ struct MuteView: View {
             .background(Color.white)
             .clipShape(Circle())
             .shadow(color: Color.cardShadowTint, radius: 1, x: 0.0, y: 1)
+            .foregroundColor(Color.black)
     }
 }
 
