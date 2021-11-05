@@ -66,7 +66,7 @@ extension FeedRoom {
                                state: [.new]),
                         Person(firstName: "Mae",
                                lastName: "Dixon",
-                               img: "person_9",
+                               img: "person_23",
                                state: []),
                         Person(firstName: "Gladys",
                                lastName: "Crawford",

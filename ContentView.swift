@@ -9,7 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @EnvironmentObject var viewModel: RoomViewModel
     @State private var showProfile: Bool?
+    @State private var isPresentingRoom = false
     
     var body: some View {
         
@@ -48,6 +50,15 @@ struct ContentView: View {
                                     
                                     let roomFeedItem = feedItem.item as! RoomFeedItem
                                     RoomView(room: roomFeedItem.room)
+                                        .onTapGesture {
+                                            isPresentingRoom = true
+                                            viewModel.setActive(roomFeedItem.room)
+                                        }
+                                    
+                                        .fullScreenCover(isPresented: $isPresentingRoom, content: {
+                                            ActiveRoomView()
+                                                .environmentObject(viewModel)
+                                        })
                                     
                                 default:
                                     EmptyView()
@@ -76,6 +87,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(RoomViewModel())
         
     }
 }

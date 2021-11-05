@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ActiveRoomView: View {
     
-    let room: FeedRoom
+    @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
+    @EnvironmentObject var viewModel: RoomViewModel
     
     var body: some View {
         
@@ -24,7 +25,7 @@ struct ActiveRoomView: View {
                     
                     HStack(alignment: .top) {
                         
-                        Text(room.roomName)
+                        Text(viewModel.activeRoom.roomName)
                             .padding(.leading, 25)
                         
                         Spacer()
@@ -37,14 +38,14 @@ struct ActiveRoomView: View {
                     .foregroundColor(Color.textBlack)
                     .font(Font.Nunito.bold(size: 20))
                     
-                    HostsView(people: room.hosts)
+                    HostsView(people: viewModel.activeRoom.hosts)
                         .padding(.horizontal, 15)
                     
-                    if !room.followedBySpeaker.isEmpty {
-                        OthersView(title: "Followed by the speakers", people: room.followedBySpeaker)
+                    if !viewModel.activeRoom.followedBySpeaker.isEmpty {
+                        OthersView(title: "Followed by the speakers", people: viewModel.activeRoom.followedBySpeaker)
                     }
                     
-                    OthersView(title: "Others in the room", people: room.othersInRoom)
+                    OthersView(title: "Others in the room", people: viewModel.activeRoom.othersInRoom)
                     
                 }
                 .padding(.bottom, 110)
@@ -53,7 +54,14 @@ struct ActiveRoomView: View {
             }
             .padding(.top, 65)
             
-            BottomRoomView()
+            BottomRoomView { action in
+                
+                switch action {
+                case .leave:
+                    presentationMode.wrappedValue.dismiss()
+                }
+                
+            }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.background)
@@ -64,6 +72,7 @@ struct ActiveRoomView: View {
 
 struct ActiveRoomView_Previews: PreviewProvider {
     static var previews: some View {
-        ActiveRoomView(room: FeedRoom.dummyData[0])
+        ActiveRoomView()
+            .environmentObject(RoomViewModel())
     }
 }
