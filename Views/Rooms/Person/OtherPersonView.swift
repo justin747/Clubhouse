@@ -12,13 +12,13 @@ struct OtherPersonView: View {
     let person: Person
     
     var body: some View {
+        
         VStack {
             
             Group {
                 
-                PersonImageView(image: person.img)                
+                    PersonImageView(image: person.img)                
                 
-                HStack(spacing: 0) {
                     
                     Text(person.firstName)
                         .foregroundColor(Color.textBlack)
@@ -27,9 +27,7 @@ struct OtherPersonView: View {
                         .minimumScaleFactor(0.8)
                     
                 }
-                
-            }
-            
+                .cornerRadius(25)
         }
         .overlay(NewView()
                     .offset(x: -20, y: 5)
